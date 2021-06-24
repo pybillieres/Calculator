@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component } from '@angular/core';
 
 @Component({
@@ -47,6 +48,12 @@ export class HomePage {
       this.result = 0;
       this.addToDisplay();
     }
+
+    else if (x == '+/-'){
+      this.currentTerm = - this.currentTerm;
+      this.addToDisplay();
+    }
+
     //ELSE IF AVEC LES OPERATEURS
     //PENSER A REFACTORER ICI, AVEC THIS.OPERATOR = X !!!
     else if (x == '+') {
@@ -104,15 +111,14 @@ export class HomePage {
 
 
   addToDisplay() {
-    //this.display = this.currentTerm.toString(); 
     if (this.operator == '') {
       this.display = this.currentTerm.toString();
     }
     else if (this.operator !== '' && this.currentTerm !== 0) {
-      this.display = this.previousTerm + this.operator + this.currentTerm;
+      this.display = this.previousTerm +' '+ this.operator +' '+ this.currentTerm;
     }
     else if (this.operator !== '' && this.currentTerm == 0) {
-      this.display = this.previousTerm + this.operator;
+      this.display = this.previousTerm +' '+ this.operator;
     }
 
     console.log(this.currentTerm, typeof this.currentTerm, this.previousTerm, typeof this.previousTerm, this.operator, 'result:', this.result);
